@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hangman</title>
+    <script type="text/javascript" src="./script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Star Wars Hangman!</h1>
+    </header>
+
+<p id="target"></p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+'use strict';
+
+document.addEventListener("keypress", getInput, false);
+
+function getInput(event){
+
+    let g = event.key;
+    document.getElementById('target').innerHTML=g;
+}
+
+
+
+
+// array of  words for game
+// const planets = ['tatooine', 'hoth', 'endor', 'naboo', 'alderaan'];
+
+    //will pick random word from planets array
+    // let random = planets[Math.floor(Math.random() * planets.length)];
+    //console.log(random);
+
+    //beginning answer array
+//     let answerArray = [];
+//     for (let i = 0; i < random.length; i++){
+//        answerArray[i] = "_";
+//     }
+
+// let remainingLetters = random.length;
+
+// let playerGuess = prompt('Guess a single letter');
+ //game loop -- code game, show progress, ask for input, udpate answerArray and remainingLetters
+//         while (remainingLetters > 0){
+//         //prompt(answerArray.join(" "));
+//         return playerGuess;
+// }
+
+// document.querySelector('#target').innerHTML=playerGuess;
+//         let playerGuess = prompt('Guess a single letter');
+
+//         //if player quits game
+//         if (guess === undefined){
+//             break;
+
+//         } else if (guess.length !== 1){
+//             alert('Please only enter a single letter');
+//         //updates game state
+//         }else {
+//             for ( let j = 0; j < random.length; j++){
+//                 if (random[j] === playerGuess){
+//                     answerArray[j] = playerGuess;
+//                     remainingLetters--;
+//                 }
+//             }
+//         }
+
+//     }
+// }
+
+</script>
+
+</body>
+</html>
