@@ -17,34 +17,43 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
+$(document).ready(function() {
 
 'use strict';
+//variables
+const planets = ['tatooine', 'hoth', 'endor', 'naboo', 'alderaan'];
+//will pick random word from planets array
+let chosenOne = planets[Math.floor(Math.random() * planets.length)];
+let answerArray = [];
+answerArray.length=chosenOne.length;
+// document.querySelector('#target').innerHTML=(answerArray);
 
+let g;
+
+console.log(chosenOne.length);
+
+for (let i = 0; i < chosenOne.length; i++){
+    answerArray[i] = "_";
+    document.querySelector('#target').innerHTML = (answerArray.join(" "));
+}
+
+
+//get keyboard input(guess from player)
 document.addEventListener("keypress", getInput, false);
 
 function getInput(event){
-
     let g = event.key;
-    document.getElementById('target').innerHTML=g;
+    console.log(g);
 }
 
 
 
 
-// array of  words for game
-// const planets = ['tatooine', 'hoth', 'endor', 'naboo', 'alderaan'];
 
-    //will pick random word from planets array
-    // let random = planets[Math.floor(Math.random() * planets.length)];
-    //console.log(random);
 
-    //beginning answer array
-//     let answerArray = [];
-//     for (let i = 0; i < random.length; i++){
-//        answerArray[i] = "_";
-//     }
 
-// let remainingLetters = random.length;
+
+})
 
 // let playerGuess = prompt('Guess a single letter');
  //game loop -- code game, show progress, ask for input, udpate answerArray and remainingLetters
