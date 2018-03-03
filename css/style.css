@@ -1,0 +1,26 @@
+/*global styles*/
+
+body{
+    background-image:url('../images/space.jpg');
+    color: #F4F6F7;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+header, p{
+    text-align:center;
+    font-size:30px;
+}
+
+.guessing {
+    border:3px solid #8dcc35;
+    width: 50%;
+}
+
+.lives{
+    border:3px solid #8dcc35;
+    width: 50%;
+
+}
+
+
+
