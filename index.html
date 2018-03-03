@@ -10,6 +10,7 @@
 <body>
     <header>
         <h1>Star Wars Hangman!</h1>
+        <p>May the Force be with you</p>
     </header>
 
 <p id="target"></p>
@@ -24,33 +25,62 @@ $(document).ready(function() {
 const planets = ['tatooine', 'hoth', 'endor', 'naboo', 'alderaan'];
 //will pick random word from planets array
 let chosenOne = planets[Math.floor(Math.random() * planets.length)];
-let answerArray = [];
-answerArray.length=chosenOne.length;
+let correctArray = [];
+let wrongArray= [];
+let underScore= [];
+// correctArray.length=chosenOne.length;
 // document.querySelector('#target').innerHTML=(answerArray);
 
-let g;
+console.log(chosenOne);
 
-console.log(chosenOne.length);
 
-for (let i = 0; i < chosenOne.length; i++){
-    answerArray[i] = "_";
-    document.querySelector('#target').innerHTML = (answerArray.join(" "));
+//create underscores to correspond to chosen random word
+//=> ES6 (skip typing function and return)
+//() meaning no parameters
+let underScoreCreator = () => {
+    for (let i = 0; i < chosenOne.length; i++){
+        underScore.push('_');
+        }
 }
 
+console.log(underScoreCreator());
 
 //get keyboard input(guess from player)
-document.addEventListener("keypress", getInput, false);
+document.addEventListener("keypress", (event) => {
+    let keyCode = event.keyCode;
+    let keyLetter = String.fromCharCode(keyCode);
+    //console.log(keyLetter);
+    //compare to chosenOne - 
+    //if user guesses a correct letter push to correctArray - if wrong push to wrongArray
+    if (chosenOne.indexOf(keyLetter) > -1) {
+        correctArray.push(keyLetter);
+        console.log(correctArray);
+    } else{
+        wrongArray.push(keyLetter);
+        console.log(wrongArray);
+    }
+    
+});
 
-function getInput(event){
-    let g = event.key;
-    console.log(g);
-}
 
 
 
 
-
-
+// function getInput(event){
+//     let g = event.key;
+//     console.log(g);
+//     if (chosenOne.includes(g)){
+//     let upd = answerArray.toString();
+//     let updatedArray = upd.replace('_', g);
+//     document.getElementById('target').innerHTML= updatedArray[i] + answerArray.join(" ");
+//     //replace _ with g
+//     //console.log('hi');
+//     } else{
+//     //reduce guesses by one
+//     //add g to letters already guessed
+//     console.log('no');
+//     } 
+// }
 
 
 })
