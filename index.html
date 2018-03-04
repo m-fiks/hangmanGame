@@ -35,54 +35,98 @@ $(document).ready(function() {
 const characters = ['leia', 'luke', 'han', 'chewy'];
 let correctArray = [];
 let wrongArray= [];
+let uniqueCorrect=[];
+let uniqueWrong=[];
 let underScore= [];
+let underScoreCounter= 0;
+//const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+//counters
+let rightGuessCounter=0;
+let guessesRemaining= 10;
+
+
 
 //will pick random word from characters array
 let chosenOne = characters[Math.floor(Math.random() * characters.length)];
-// console.log(chosenOne);
+//console.log(chosenOne);
+
+
 //create underscores to correspond to chosen random word
 //=> ES6 (skip typing function and return)
 //() meaning no parameters
 let underScoreCreator = () => {
     for (let i = 0; i < chosenOne.length; i++){
         underScore.push('_');
+        underScoreCounter=(chosenOne.length);
         }
     return underScore;
 }
 
-//display _ for word selected
+//innerHTML business
+//display '_' for selected word
 document.querySelector('#target').innerHTML=(underScoreCreator().join(' '));
+document.querySelector('#lives-3').innerHTML=(guessesRemaining);
 
 //get keyboard input(guess from player)
 document.addEventListener("keypress", (event) => {
-    let keyCode = event.keyCode;
-    let keyLetter = String.fromCharCode(keyCode);
-    //console.log(keyLetter);
-    //compare to chosenOne - 
+    //get numerical code from key pressed (a-z : 65-90)
+    let keyNumbs = event.keyCode;
+    //console.log(keyNumbs);
+    let keyLetter = String.fromCharCode(keyNumbs);
+    console.log(keyLetter);
+    //compare to chosenOne
     //if user guesses a correct letter push to correctArray - if wrong push to wrongArray
-    if (chosenOne.indexOf(keyLetter) > -1) {
-        correctArray.push(keyLetter);
-        document.querySelector('#target').innerHTML=(correctArray.join(''));
+    if(chosenOne.indexOf(keyLetter) > -1) {
+
+    correctArray.push(keyLetter);
+    //only allow for one instance of a letter
+    let uniqueCorrect = correctArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+    document.querySelector('#target').innerHTML=(uniqueCorrect.join(''));
+    // rightGuessCounter++;
+    //console.log(correctArray)
+    //console.log(rightGuessCounter);
     //put letter in place of underscore
     underScore[chosenOne.indexOf(keyLetter)] = keyLetter;
-    console.log(underScore.join(''));
+    //console.log(underScore.join(''));
 
-    //let player know they have won when all letters guessed
-    if(correctArray.length == chosenOne.length){
-        alert('good job!');
+    } else  {
+    wrongArray.push(keyLetter);
+    let uniqueWrong = wrongArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+    document.querySelector("#letters-guessed2").innerHTML =(uniqueWrong);
     }
-    
-    } else{
-        wrongArray.push(keyLetter);
-        document.querySelector("#letters-guessed2").innerHTML = (wrongArray);
-    }
+});
+
 
 });
 
 
+// //prevent from double guessing letters
+// let noDoubles = () => {
+//     for (let i = 0; i < chosenOne.length; i++){
+//         if(correctArray.indexOf(keyLetter) > -1){
+//             keysPressedAlready.push(keyLetter);
+//         }
+//     }
+//     return keysPressedAlready;
+// }
+
+// });
+
+//winning
+// if(rightGuessCounter === underScoreCounter){
+//     alert('you win');
+// }
+
+// console.log(noDoubles())
 
 
 
+
+ //let player know they have won when all letters guessed
+//  if(correctArrayAlreadyGuessed.length == chosenOne.length){
+//             alert('good job!');
+//         }
 // function getInput(event){
 //     let g = event.key;
 //     console.log(g);
@@ -98,9 +142,6 @@ document.addEventListener("keypress", (event) => {
 //     console.log('no');
 //     } 
 // }
-
-
-})
 
 // let playerGuess = prompt('Guess a single letter');
  //game loop -- code game, show progress, ask for input, udpate answerArray and remainingLetters
