@@ -57,11 +57,13 @@ let chosenOne = characters[Math.floor(Math.random() * characters.length)];
 //() meaning no parameters
 let underScoreCreator = () => {
     for (let i = 0; i < chosenOne.length; i++){
-        underScore.push('_');
+        underScore[i] = "_";
         underScoreCounter=(chosenOne.length);
         }
     return underScore;
 }
+
+let remainingLetters = (chosenOne.length);
 
 //innerHTML business
 //display '_' for selected word
@@ -75,30 +77,39 @@ document.addEventListener("keypress", (event) => {
     //console.log(keyNumbs);
     let keyLetter = String.fromCharCode(keyNumbs);
     console.log(keyLetter);
+
     //compare to chosenOne
-    //if user guesses a correct letter push to correctArray - if wrong push to wrongArray
+    //if user guesses a correct letter push to correctArray - else push to wrongArray
     if(chosenOne.indexOf(keyLetter) > -1) {
+        correctArray.push(keyLetter);
 
-    correctArray.push(keyLetter);
-    //only allow for one instance of a letter
-    let uniqueCorrect = correctArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
-    document.querySelector('#target').innerHTML=(uniqueCorrect.join(''));
-    // rightGuessCounter++;
-    //console.log(correctArray)
-    //console.log(rightGuessCounter);
-    //put letter in place of underscore
-    underScore[chosenOne.indexOf(keyLetter)] = keyLetter;
-    //console.log(underScore.join(''));
+        //only allow for one instance of a letter
+        let uniqueCorrect = correctArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+        // rightGuessCounter++;
+        //console.log(rightGuessCounter);
 
-    } else  {
-    wrongArray.push(keyLetter);
-    let uniqueWrong = wrongArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
-    document.querySelector("#letters-guessed2").innerHTML =(uniqueWrong);
+    } else {
+        wrongArray.push(keyLetter);
+        let uniqueWrong = wrongArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+        document.querySelector("#letters-guessed2").innerHTML =(uniqueWrong);
     }
+
+    //have letter take place of underscore
+     for (let j=0; j < chosenOne.length; j++){
+        if (chosenOne[j] === keyLetter) {
+        underScore[j] = keyLetter;
+        remainingLetters--;
+    }
+}
+
+    document.querySelector('#target').innerHTML=(underScore.join(' '));
+
+});
+
 });
 
 
-});
+
 
 
 // //prevent from double guessing letters
