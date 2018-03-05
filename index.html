@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 'use strict';
 //variables
-const characters = ['leia', 'luke', 'han', 'chewy'];
+const characters = ['leia', 'luke', 'han', 'chewy', 'yoda', 'greedo'];
 //where guessed letters originally pushed to
 let correctArray = [];
 let wrongArray= [];
@@ -41,7 +41,6 @@ let uniqueCorrect=[];
 let uniqueWrong=[];
 
 let underScore= [];
-let underScoreCounter= 0;
 //counters
 let rightGuessCounter=0;
 
@@ -57,7 +56,6 @@ let guessesRemaining = chosenOne.length + 3;
 let underScoreCreator = () => {
     for (let i = 0; i < chosenOne.length; i++){
         underScore[i] = "_";
-        underScoreCounter=(chosenOne.length);
         }
     return underScore;
 }
@@ -83,8 +81,6 @@ document.addEventListener("keypress", (event) => {
         correctArray.push(keyLetter);
         //only allow for one instance of a letter
         let uniqueCorrect = correctArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
-        // console.log(uniqueCorrect.length);
-        // console.log(chosenOne.length);
 
     } else {
         wrongArray.push(keyLetter);
@@ -103,14 +99,17 @@ document.addEventListener("keypress", (event) => {
         document.querySelector("#lives-3").innerHTML =(guessesRemaining);
     }
 }
-    
-
 
 document.querySelector('#target').innerHTML=(underScore.join(' '));
+
 //lose conditions
 for (let j=0; j < chosenOne.length; j++){
     if (guessesRemaining === 0){
-        alert('Bummer..you did not guess the word! Try again!');
+        alert('Bummer..you did not guess the word! Refresh the page to try again!');
+        break;
+    //not totally correct but uniqueCorrect.length does not work ???
+    } else if (correctArray.length == chosenOne.length){
+        alert('You win!!');
         break;
     }
 }
