@@ -32,14 +32,14 @@ $(document).ready(function() {
 
 'use strict';
 //variables
-const characters = ['leia', 'luke', 'han', 'chewy', 'yoda', 'greedo'];
+const characters = ['leia', 'luke', 'han', 'chewy', 'yoda'];
 //where guessed letters originally pushed to
 let correctArray = [];
 let wrongArray= [];
 //array of letters filtered to only contain one of each letter
 let uniqueCorrect=[];
 let uniqueWrong=[];
-
+let underScoreCounter=0;
 let underScore= [];
 //counters
 let rightGuessCounter=0;
@@ -48,7 +48,7 @@ let rightGuessCounter=0;
 let chosenOne = characters[Math.floor(Math.random() * characters.length)];
 //console.log(chosenOne);
 
-let guessesRemaining = chosenOne.length + 3;
+let guessesRemaining = (chosenOne.length) + 3;
 
 //create underscores to correspond to chosen random word
 //=> ES6 (skip typing function and return)
@@ -56,6 +56,7 @@ let guessesRemaining = chosenOne.length + 3;
 let underScoreCreator = () => {
     for (let i = 0; i < chosenOne.length; i++){
         underScore[i] = "_";
+        underScoreCounter=(chosenOne.length);
         }
     return underScore;
 }
@@ -103,23 +104,18 @@ document.addEventListener("keypress", (event) => {
 document.querySelector('#target').innerHTML=(underScore.join(' '));
 
 //lose conditions
-for (let j=0; j < chosenOne.length; j++){
-    if (guessesRemaining === 0){
+//win conditions not totally correct but uniqueCorrect.length does not work ???
+for(let j=0; j < chosenOne.length; j++){
+    if (correctArray.length == chosenOne.length){
+            alert('You win!!');
+            break;
+    } else if (guessesRemaining === 0){
         alert('Bummer..you did not guess the word! Refresh the page to try again!');
-        break;
-    //not totally correct but uniqueCorrect.length does not work ???
-    } else if (correctArray.length == chosenOne.length){
-        alert('You win!!');
         break;
     }
 }
 
 });
-
-
-
-    // alert('you win');
-    // }
 
 
 });
