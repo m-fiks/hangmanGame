@@ -1,25 +1,35 @@
 /*global styles*/
 
 body{
-    background-image:url('../images/space.jpg');
+    background-image:url('../assets/space.jpg');
     color: #F4F6F7;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 header, p{
     text-align:center;
-    font-size:30px;
+    font-size:22px;
 }
 
 .guessing {
-    border:3px solid #8dcc35;
+    border:3px solid #a3230d;
     width: 50%;
+    margin-left:370px;
+    margin-bottom:10px;
 }
 
 .lives{
     border:3px solid #8dcc35;
     width: 50%;
+    margin-left:370px;
+}
 
+.glyphicons{
+    margin-left:340px;
+}
+
+.swg{
+    padding:10px;
 }
 
 
