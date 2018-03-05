@@ -33,24 +33,23 @@ $(document).ready(function() {
 'use strict';
 //variables
 const characters = ['leia', 'luke', 'han', 'chewy'];
+//where guessed letters originally pushed to
 let correctArray = [];
 let wrongArray= [];
+//array of letters filtered to only contain one of each letter
 let uniqueCorrect=[];
 let uniqueWrong=[];
+
 let underScore= [];
 let underScoreCounter= 0;
-//const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-
 //counters
 let rightGuessCounter=0;
-let guessesRemaining= 10;
 
-
-
-//will pick random word from characters array
+// pick random word from characters array
 let chosenOne = characters[Math.floor(Math.random() * characters.length)];
 //console.log(chosenOne);
 
+let guessesRemaining = chosenOne.length + 3;
 
 //create underscores to correspond to chosen random word
 //=> ES6 (skip typing function and return)
@@ -63,48 +62,66 @@ let underScoreCreator = () => {
     return underScore;
 }
 
-let remainingLetters = (chosenOne.length);
-
 //innerHTML business
 //display '_' for selected word
 document.querySelector('#target').innerHTML=(underScoreCreator().join(' '));
+
 document.querySelector('#lives-3').innerHTML=(guessesRemaining);
 
+//game play
 //get keyboard input(guess from player)
 document.addEventListener("keypress", (event) => {
     //get numerical code from key pressed (a-z : 65-90)
     let keyNumbs = event.keyCode;
     //console.log(keyNumbs);
     let keyLetter = String.fromCharCode(keyNumbs);
-    console.log(keyLetter);
+    //console.log(keyLetter);
 
     //compare to chosenOne
     //if user guesses a correct letter push to correctArray - else push to wrongArray
     if(chosenOne.indexOf(keyLetter) > -1) {
         correctArray.push(keyLetter);
-
         //only allow for one instance of a letter
         let uniqueCorrect = correctArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
-        // rightGuessCounter++;
-        //console.log(rightGuessCounter);
+        // console.log(uniqueCorrect.length);
+        // console.log(chosenOne.length);
 
     } else {
         wrongArray.push(keyLetter);
         let uniqueWrong = wrongArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
         document.querySelector("#letters-guessed2").innerHTML =(uniqueWrong);
+        guessesRemaining--;
+        document.querySelector("#lives-3").innerHTML =(guessesRemaining);
+
     }
 
     //have letter take place of underscore
      for (let j=0; j < chosenOne.length; j++){
         if (chosenOne[j] === keyLetter) {
         underScore[j] = keyLetter;
-        remainingLetters--;
+        guessesRemaining--;
+        document.querySelector("#lives-3").innerHTML =(guessesRemaining);
+    }
+}
+    
+
+
+document.querySelector('#target').innerHTML=(underScore.join(' '));
+//lose conditions
+for (let j=0; j < chosenOne.length; j++){
+    if (guessesRemaining === 0){
+        alert('Bummer..you did not guess the word! Try again!');
+        break;
     }
 }
 
-    document.querySelector('#target').innerHTML=(underScore.join(' '));
-
 });
+
+
+
+    // alert('you win');
+    // }
+
 
 });
 
