@@ -10,10 +10,13 @@
     <script type="text/javascript" src="./script.js"></script>
 </head>
 <body>
+<div class="row">
+    <div class="col-md-12 col-xs-12">
     <header>
         <h1>Basic Star Wars Hangman!</h1>
-        <p>Guess the character name below ... May the Force be with you</p>
+        <p class="text-space">Guess the character name below ... May the Force be with you</p>
     </header>
+
 <div class="glyphicons">
     <i class="swg swg-yoda swg-5x"></i>
     <i class="swg swg-r2d2 swg-5x"></i>
@@ -24,20 +27,25 @@
     <i class="swg swg-reball swg-5x"></i>
     <i class="swg swg-stormtrooper-3 swg-5x"></i>
     <i class="swg swg-darthvader swg-5x"></i>
+</div>  
+</div>
 </div>
 
 <br><br>
-<p id="target"></p>
-<br>
-<div class="guessing">
-<p id="letters-guessed">Letters Already Guessed: </p>
-<p id="letters-guessed2"></p>
+<div class="row">
+    <div class="col-md-8 col-xs-12">
+        <p id="target"></p>
+        <br>
+        <div class="guessing">
+        <p id="letters-guessed">Letters Already Guessed: </p>
+        <p id="letters-guessed2"></p>
+        </div>
+        <div class="lives">
+            <p id="lives-2">Guesses Left: </p>
+            <p id="lives-3"></p>
+        </div>
+    </div>
 </div>
-<div class="lives">
-    <p id="lives-2">Guesses Left: </p>
-    <p id="lives-3"></p>
-</div>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -67,7 +75,7 @@ let guessesRemaining = (chosenOne.length) + 3;
 //create underscores to correspond to chosen random word
 //=> ES6 (skip typing function and return)
 //() meaning no parameters
-let underScoreCreator = () => {
+function underScoreCreator() {
     for (let i = 0; i < chosenOne.length; i++){
         underScore[i] = "_";
         underScoreCounter=(chosenOne.length);
@@ -120,12 +128,18 @@ document.querySelector('#target').innerHTML=(underScore.join(' '));
 //lose conditions
 //win conditions not totally correct but uniqueCorrect.length does not work ???
 for(let j=0; j < chosenOne.length; j++){
-    if (correctArray.length == chosenOne.length){
-            alert('You win!! Refresh the page to play again!');
-            break;
+    if (correctArray.length === chosenOne.length){
+            $('.text-space').append('<p class="text"></p>')
+            $('.text').text('GOOD JOB U GUESSED CORRECTLY')
+            setTimeout(() => {
+            window.location.reload();
+        }, 3000);
     } else if (guessesRemaining === 0){
-        alert('Bummer..you did not guess the word! Refresh the page to try again!');
-        break;
+        $('.text-space').append('<p class="text"></p>')
+        $('.text').text('BUMMER.. U DID NOT GUESS CORRECTLY')
+        setTimeout(() => {
+            window.location.reload();
+        }, 3000);
     }
 }
 
