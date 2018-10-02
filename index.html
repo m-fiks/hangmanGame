@@ -6,43 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="assets/starwars-glyphicons/starwars-glyphicons/css/starwars-glyphicons.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>Hangman</title>
     <script type="text/javascript" src="./script.js"></script>
 </head>
 <body>
 <div class="row">
-    <div class="col-md-8 col-xs-12">
-        <header>
-            <h1>Star Wars Hangman!</h1>
-            <p class="text-space">Guess the character name below ... May the Force be with you</p>
-        </header>
-
-        <div class="glyphicons">
-            <i class="swg swg-yoda swg-5x"></i>
-            <i class="swg swg-r2d2 swg-5x"></i>
-            <i class="swg swg-c3po-o swg-5x"></i>
-            <i class="swg swg-lightsabers swg-5x"></i>
-            <i class="swg swg-leia swg-5x"></i>
-            <i class="swg swg-falcon swg-5x"></i>
-            <i class="swg swg-reball swg-5x"></i>
-            <i class="swg swg-stormtrooper-3 swg-5x"></i>
-            <i class="swg swg-darthvader swg-5x"></i>
-        </div>
-    </div>
+<div class="jumbotron jumbotron-fluid">
+    <h1>star wars hangman</h1>
 </div>
-<br>
-<div class="row">
-    <div class="col-md-8 col-xs-12">
-        <p id="target"></p>
-        <br>
-        <div class="guessing">
-        <p id="letters-guessed">Letters Already Guessed: </p>
-        <p id="letters-guessed2"></p>
-        </div>
-        <div class="lives">
-            <p id="lives-2">Guesses Left: </p>
-            <p id="lives-3"></p>
-        </div>
+<div class="col-md-8 col-xs-12">
+    <p class="text-space">Guess the character name ... May the Force be with you</p>
+    <p id="target"></p>
+</div>
+
+<!-- <div class="glyphicons">
+    <i class="swg swg-yoda swg-5x"></i>
+    <i class="swg swg-r2d2 swg-5x"></i>
+    <i class="swg swg-c3po-o swg-5x"></i>
+    <i class="swg swg-lightsabers swg-5x"></i>
+    <i class="swg swg-leia swg-5x"></i>
+    <i class="swg swg-falcon swg-5x"></i>
+    <i class="swg swg-reball swg-5x"></i>
+    <i class="swg swg-stormtrooper-3 swg-5x"></i>
+    <i class="swg swg-darthvader swg-5x"></i>
+</div> -->
+
+<div class="col-md-4 col-xs-12">
+    <div class="guessing">
+    <p id="letters-guessed">Letters Already Guessed: </p>
+    <p id="letters-guessed2"></p>
+    </div>
+    <div class="lives">
+        <p id="lives-2">Guesses Left: </p>
+        <p id="lives-3"></p>
     </div>
 </div>
 
@@ -60,18 +57,15 @@ let uniqueCorrect=[];
 let uniqueWrong=[];
 let underScoreCounter=0;
 let underScore= [];
-//counters
-let rightGuessCounter=0;
 
 // pick random word from characters array
 let chosenOne = characters[Math.floor(Math.random() * characters.length)];
-//console.log(chosenOne);
 
+//counters
+let rightGuessCounter=0;
 let guessesRemaining = (chosenOne.length) + 3;
 
 //create underscores to correspond to chosen random word
-//=> ES6 (skip typing function and return)
-//() meaning no parameters
 function underScoreCreator() {
     for (let i = 0; i < chosenOne.length; i++){
         underScore[i] = "_";

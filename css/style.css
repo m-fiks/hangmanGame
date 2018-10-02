@@ -13,15 +13,11 @@ header, p{
 
 .guessing {
     border:3px solid #dd1a1a;
-    width: 50%;
-    margin-left:370px;
     margin-bottom:10px;
 }
 
 .lives{
     border:3px solid #8dcc35;
-    width: 50%;
-    margin-left:370px;
 }
 
 .glyphicons{
