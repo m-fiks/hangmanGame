@@ -83,7 +83,6 @@ function underScoreCreator() {
 //innerHTML business
 //display '_' for selected word
 document.querySelector('#target').innerHTML=(underScoreCreator().join(' '));
-
 document.querySelector('#lives-3').innerHTML=(guessesRemaining);
 
 //game play
@@ -91,23 +90,25 @@ document.querySelector('#lives-3').innerHTML=(guessesRemaining);
 document.addEventListener("keypress", (event) => {
     //get numerical code from key pressed (a-z : 65-90)
     let keyNumbs = event.keyCode;
-    //console.log(keyNumbs);
-    let keyLetter = String.fromCharCode(keyNumbs);
-    //console.log(keyLetter);
-
+    let keyLetter = String.fromCharCode(keyNumbs).toLowerCase();
+    console.log(keyLetter)
     //compare to chosenOne
     //if user guesses a correct letter push to correctArray - else push to wrongArray
     if(chosenOne.indexOf(keyLetter) > -1) {
         correctArray.push(keyLetter);
         //only allow for one instance of a letter
-        let uniqueCorrect = correctArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
+        let uniqueCorrect = correctArray.filter((item, i, ar) => {
+            return ar.indexOf(item) === i
+        });
 
     } else {
         wrongArray.push(keyLetter);
-        let uniqueWrong = wrongArray.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
-        document.querySelector("#letters-guessed2").innerHTML =(uniqueWrong);
+        let uniqueWrong = wrongArray.filter((item, i, ar) => {
+             return ar.indexOf(item) === i; 
+        });
+        document.querySelector("#letters-guessed2").innerHTML = uniqueWrong;
         guessesRemaining--;
-        document.querySelector("#lives-3").innerHTML =(guessesRemaining);
+        document.querySelector("#lives-3").innerHTML = guessesRemaining;
 
     }
 
@@ -124,19 +125,19 @@ document.querySelector('#target').innerHTML=(underScore.join(' '));
 
 //lose conditions
 //win conditions not totally correct but uniqueCorrect.length does not work ???
-    if (correctArray.length === chosenOne.length){
-            $('.text-space').append('<p class="text"></p>')
-            $('.text').text('GOOD JOB U GUESSED CORRECTLY')
-            setTimeout(() => {
-            window.location.reload();
-        }, 3000);
-    } else if (guessesRemaining === 0){
+if (correctArray.length === chosenOne.length){
         $('.text-space').append('<p class="text"></p>')
-        $('.text').text('BUMMER.. U DID NOT GUESS CORRECTLY')
+        $('.text').text('GOOD JOB U GUESSED CORRECTLY')
         setTimeout(() => {
-            window.location.reload();
-        }, 3000);
-    }
+        window.location.reload();
+    }, 3000);
+} else if (guessesRemaining === 0){
+    $('.text-space').append('<p class="text"></p>')
+    $('.text').text('BUMMER.. U DID NOT GUESS CORRECTLY')
+    setTimeout(() => {
+        window.location.reload();
+    }, 3000);
+}
 
 });
 
