@@ -11,27 +11,26 @@
 </head>
 <body>
 <div class="row">
-    <div class="col-md-12 col-xs-12">
-    <header>
-        <h1>Basic Star Wars Hangman!</h1>
-        <p class="text-space">Guess the character name below ... May the Force be with you</p>
-    </header>
+    <div class="col-md-8 col-xs-12">
+        <header>
+            <h1>Star Wars Hangman!</h1>
+            <p class="text-space">Guess the character name below ... May the Force be with you</p>
+        </header>
 
-<div class="glyphicons">
-    <i class="swg swg-yoda swg-5x"></i>
-    <i class="swg swg-r2d2 swg-5x"></i>
-    <i class="swg swg-c3po-o swg-5x"></i>
-    <i class="swg swg-lightsabers swg-5x"></i>
-    <i class="swg swg-leia swg-5x"></i>
-    <i class="swg swg-falcon swg-5x"></i>
-    <i class="swg swg-reball swg-5x"></i>
-    <i class="swg swg-stormtrooper-3 swg-5x"></i>
-    <i class="swg swg-darthvader swg-5x"></i>
-</div>  
+        <div class="glyphicons">
+            <i class="swg swg-yoda swg-5x"></i>
+            <i class="swg swg-r2d2 swg-5x"></i>
+            <i class="swg swg-c3po-o swg-5x"></i>
+            <i class="swg swg-lightsabers swg-5x"></i>
+            <i class="swg swg-leia swg-5x"></i>
+            <i class="swg swg-falcon swg-5x"></i>
+            <i class="swg swg-reball swg-5x"></i>
+            <i class="swg swg-stormtrooper-3 swg-5x"></i>
+            <i class="swg swg-darthvader swg-5x"></i>
+        </div>
+    </div>
 </div>
-</div>
-
-<br><br>
+<br>
 <div class="row">
     <div class="col-md-8 col-xs-12">
         <p id="target"></p>
@@ -51,8 +50,6 @@
 
 <script>
 $(document).ready(function() {
-
-'use strict';
 //variables
 const characters = ['leia', 'luke', 'han', 'chewy', 'yoda'];
 //where guessed letters originally pushed to
@@ -127,7 +124,6 @@ document.querySelector('#target').innerHTML=(underScore.join(' '));
 
 //lose conditions
 //win conditions not totally correct but uniqueCorrect.length does not work ???
-for(let j=0; j < chosenOne.length; j++){
     if (correctArray.length === chosenOne.length){
             $('.text-space').append('<p class="text"></p>')
             $('.text').text('GOOD JOB U GUESSED CORRECTLY')
@@ -141,7 +137,6 @@ for(let j=0; j < chosenOne.length; j++){
             window.location.reload();
         }, 3000);
     }
-}
 
 });
 
