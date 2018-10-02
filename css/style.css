@@ -6,18 +6,29 @@ body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-header, p{
+#jumbo-head {
+    background-color: #892337af;
+    color: gainsboro;
+}
+
+.main-head {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+p{
     text-align:center;
     font-size:22px;
+    color: gainsboro;
 }
 
 .guessing {
-    border:3px solid #dd1a1a;
+    border:3px solid #B62321;
     margin-bottom:10px;
 }
 
 .lives{
-    border:3px solid #8dcc35;
+    border:3px solid #A1A332;
 }
 
 .glyphicons{
