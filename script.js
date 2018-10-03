@@ -1,6 +1,6 @@
 $(document).ready(function() {
 //variables
-const characters = ['leia', 'luke', 'han', 'chewy', 'yoda'];
+const characters = ['leia', 'luke', 'han', 'chewy', 'yoda', 'rey', 'finn', 'poe', 'anakin', 'padme', 'artoo', '3po'];
 //where guessed letters originally pushed to
 let correctArray = [];
 let wrongArray= [];
