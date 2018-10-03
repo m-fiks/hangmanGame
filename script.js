@@ -14,7 +14,6 @@ let underScore= [];
 let chosenOne = characters[Math.floor(Math.random() * characters.length)];
 
 //counters
-let rightGuessCounter=0;
 let guessesRemaining = (chosenOne.length) + 3;
 
 //create underscores to correspond to chosen random word
@@ -43,13 +42,13 @@ document.addEventListener("keypress", (event) => {
     if(chosenOne.indexOf(keyLetter) > -1) {
         correctArray.push(keyLetter);
         //only allow for one instance of a letter
-        let uniqueCorrect = correctArray.filter((item, i, ar) => {
+        uniqueCorrect = correctArray.filter((item, i, ar) => {
             return ar.indexOf(item) === i
         });
 
     } else {
         wrongArray.push(keyLetter);
-        let uniqueWrong = wrongArray.filter((item, i, ar) => {
+        uniqueWrong = wrongArray.filter((item, i, ar) => {
              return ar.indexOf(item) === i; 
         });
         document.querySelector("#letters-guessed2").innerHTML = uniqueWrong;
