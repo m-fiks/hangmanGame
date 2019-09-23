@@ -1,9 +1,11 @@
-$(document).ready(function() {
+$(document).ready(() => {
 //variables
 const characters = ['leia', 'luke', 'han', 'chewy', 'yoda', 'rey', 'finn', 'poe', 'anakin', 'padme', 'artoo', '3po'];
+
 //where guessed letters originally pushed to
 let correctArray = [];
 let wrongArray= [];
+
 //array of letters filtered to only contain one of each letter
 let uniqueCorrect=[];
 let uniqueWrong=[];
@@ -17,13 +19,13 @@ let chosenOne = characters[Math.floor(Math.random() * characters.length)];
 let guessesRemaining = (chosenOne.length) + 3;
 
 //create underscores to correspond to chosen random word
-function underScoreCreator() {
+underScoreCreator = () => {
     for (let i = 0; i < chosenOne.length; i++){
-        underScore[i] = "_";
         underScoreCounter=(chosenOne.length);
+        underScore[i] = "_";
         }
     return underScore;
-}
+};
 
 //innerHTML business
 //display '_' for selected word
@@ -32,6 +34,9 @@ document.querySelector('#lives-3').innerHTML=(guessesRemaining);
 
 //game play
 //get keyboard input(guess from player)
+
+//need to do: set timer for game?, capitalize names
+
 document.addEventListener("keypress", (event) => {
     //get numerical code from key pressed (a-z : 65-90)
     let keyNumbs = event.keyCode;
@@ -72,13 +77,13 @@ document.querySelector('#target').innerHTML=(underScore.join(' '));
 //win conditions not totally correct but uniqueCorrect.length does not work ???
 if (correctArray.length === chosenOne.length){
         $('.text-space').append('<p class="text"></p>')
-        $('.text').text('GOOD JOB U GUESSED CORRECTLY')
+        $('.text').text('GOOD JOB. You got it!')
         setTimeout(() => {
         window.location.reload();
     }, 3000);
 } else if (guessesRemaining === 0){
     $('.text-space').append('<p class="text"></p>')
-    $('.text').text('BUMMER.. U DID NOT GUESS CORRECTLY')
+    $('.text').text(`BUMMER.. you did not guess correctly. The correct answer was: ${chosenOne}`)
     setTimeout(() => {
         window.location.reload();
     }, 3000);
